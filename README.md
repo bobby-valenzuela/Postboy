@@ -9,7 +9,7 @@ postboy.sh
 
 <br />
 
-You can optionally specify a URL,endpoint, and HTTP method as a script argument as well.
+You can optionally specify a URL, endpoint, and HTTP method as a script argument as well.
 ```
 postboy.sh -u {URL} -e {endpoint} -m GET
 ```
@@ -34,5 +34,5 @@ postboy.sh -b {BEARER_TOKEN} -h {HEADER} -i {HEADER2} -j {HEADER3} -k {HEADER4}
 
 <br />
 
-### Know Issues
+### Known Issues
 When making POST request and sending a request body, one-liner JSON works fine `{"type":"example"}` but multi-line JSON causes issues as bash can't read the carriage return.
