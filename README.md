@@ -19,6 +19,10 @@ postboy.sh -u {URL} -e {endpoint} -m GET
 
 <br />
 
+_Note: Requests default to GET if no method specific
+
+<br />
+
 ### Authentication and Headers
 If you have a JWT Bearer Token to set or some headers, they must be specified as a script argument.
 ```bash
