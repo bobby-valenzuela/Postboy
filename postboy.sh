@@ -85,6 +85,9 @@ done
 
 # Proces request if any scripts args are passed in
 if [[ ! -z "${request_details[URL]}" ]]; then
+    
+    # If no HTTP Method specified defaul to Get
+    [[ -z "${request_details[METHOD]}" ]] && request_details["METHOD"]="GET" && CURL_CMD="${CURL_CMD} --request GET" 
 
     # eval "${CURL_CMD} '${FULL_URL}' ${HEADERS} ${REQUEST_BODY} | jq"
     new_result=$(eval "${CURL_CMD} '${request_details[URL]}${request_details[ENDPOINT]}' ${request_details[HEADERS]} ${request_details[REQUEST_BODY]}")
@@ -106,8 +109,14 @@ while true
 do
 
   # Read info for new request
-  echo -e "\n\n======== New request ========\n\nURL: ${request_details[URL]}\nHeaders: ${request_details[HEADERS]}\nEndpoint: ${request_details[ENDPOINT]}\n"
-  
+  echo -e "\n\n======== New request ========\n\n"
+ 
+  # Show any existing values we already have saved
+  [[ ! -z "${request_details[URL]}" ]] && echo "URL: ${request_details[URL]}"
+  [[ ! -z "${request_details[HEADERS]}" ]] && echo "Headers: ${request_details[HEADERS]}"
+  [[ ! -z "${request_details[ENDPOINT]}" ]] && echo "Endpoint: ${request_details[ENDPOINT]}"
+
+
   # Make sure we require a URL
   if [[ -z "${request_details[URL]}" ]]; then
       read -p "URL: " new_url
@@ -125,6 +134,9 @@ do
   [[ ! -z "${new_method}" ]] && request_details["METHOD"]=${new_method^^}
   [[ ! -z "${new_body}" ]] && request_details["REQUEST_BODY"]="--data '${new_body}' --header 'Content-Type: application/json'"
   [[ ! -z "${new_url}" ]] && request_details["URL"]=${new_url}
+ 
+  # Default to GET if nothing passed in
+  [[ -z "${request_details[METHOD]}" ]] && request_details["METHOD"]="GET" && CURL_CMD="${CURL_CMD} --request GET" 
   
   new_result=$(eval "${CURL_CMD} '${request_details[URL]}${request_details[ENDPOINT]}' ${request_details[HEADERS]} ${request_details[REQUEST_BODY]}")
  
