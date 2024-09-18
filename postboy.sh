@@ -138,15 +138,5 @@ do
 
 done
 
-
-
-#eval "${CMD} | jq"
-#echo $CMD
-#RESPONSE=$($CMD)
-#echo $RESPONSE
-#curl --silent --location --request POST 'https://api.dropboxapi.com/2/users/get_current_account' \
-#--header 'Dropbox-API-Select-User: dbmid:AADLAjqwKs8-CVxgznCcJrcEEK6XY2Q0d0U' \
-#--header 'Authorization: Bearer SHtBgI-VCogAAAAAAAAAAbN30p4IEgwXbEXVczdpGEJEDKSB0G_LfBZX1d1e80DC' | jq
-
-#bash postboy.sh  -m POST -u 'https://api.dropboxapi.com' -e '/2/users/get_current_account'  -b 'SHtBgI-VCogAAAAAAAAAAbN30p4IEgwXbEXVczdpGEJEDKSB0G_LfBZX1d1e80DC' -h 'Dropbox-API-Select-User: dbmid:AADLAjqwKs8-CVxgznCcJrcEEK6XY2Q0d0U'
-
+# FORMAT
+#curl --silent --location --request POST '{JSON}' --header 'Authorization: Bearer {token} | jq
